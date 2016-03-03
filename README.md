@@ -6,7 +6,7 @@ Submitted by: **Tran Thach Thao**
 
 Time spent: **5** hours spent in total
 
-URL: **Insert your Heroku URL here**
+URL: **https://zick-ruby-blog.herokuapp.com/articles**
 
 ## User Stories
 
