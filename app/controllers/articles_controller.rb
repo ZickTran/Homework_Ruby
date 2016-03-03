@@ -6,6 +6,11 @@ class ArticlesController < ApplicationController
   def index
     @articles = Article.all
     @markdown = Redcarpet::Markdown.new(Redcarpet::Render::HTML)
+    if params[:search]
+      @articles = Article.search(params[:search]).order("created_at DESC")
+    else
+      @articles = Article.order("created_at DESC")
+    end
   end
 
   # GET /articles/1
@@ -59,6 +64,15 @@ class ArticlesController < ApplicationController
     respond_to do |format|
       format.html { redirect_to articles_url, notice: 'Article was successfully destroyed.' }
       format.json { head :no_content }
+    end
+  end
+  
+  def delete
+    @article= Article.find(params[:id])
+    if @article.destroy
+      redirect_to(:action => 'index')
+    else
+    render 'delete'
     end
   end
 
